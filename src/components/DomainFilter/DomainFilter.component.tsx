@@ -11,7 +11,15 @@ interface Props {
   domains: string[];
 }
 
-
+function Select(props: any) {
+  return <select name={props.name} multiple>
+  {props.values.map((value: string) => (
+    <option value={value} key={value}>
+      {value}
+    </option>
+  ))}
+</select>;
+}
 class DomainFilter extends React.Component<Props, State> {
   componentDidMount() {
     const { domains } = this.props;
@@ -45,27 +53,10 @@ class DomainFilter extends React.Component<Props, State> {
 
     return (
       <>
-        <select name="countries" multiple>
-          {countries.map((country) => (
-            <option value={country} key={country}>
-              {country}
-            </option>
-          ))}
-        </select>
-        <select name="classifications" multiple>
-          {classifications.map((classification) => (
-            <option value={classification} key={classification}>
-              {classification}
-            </option>
-          ))}
-        </select>
-        <select name="subClassifications" multiple>
-          {subClassifications.map((subClassification) => (
-            <option value={subClassification} key={subClassification}>
-              {subClassification}
-            </option>
-          ))}
-        </select>
+        <Select name='countries' values={countries}/>
+        <Select name='classifications' values={classifications}/>
+        <Select name='subClassifications' values={subClassifications}/>
+        
       </>
     );
   }
